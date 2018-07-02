@@ -17,8 +17,13 @@ note:
 (2) the latency time shall be positive
 ```
 Sample Input / Output (based on sample CSV data):
+
 Input: A F 1000 Output: Path not found
+
 Input: A F 1200 Output: A => B => D => E => F => 1120
+
 Input: A D 100 Output: A => C => D => 50
+
 Input: E A 400 Output: E => D => B => A => 120
+
 Input: E A 80 Output: E => D => C => A => 60
