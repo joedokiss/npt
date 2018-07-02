@@ -29,4 +29,4 @@ Input: E A 400 Output: E => D => B => A => 120
 Input: E A 80 Output: E => D => C => A => 60
 
 ### Step 4 - exit the program:
-simply input the "QUIT" in the input interfacefollowed by ENTER key
+simply input the "QUIT" in the input interface followed by ENTER key
