@@ -2,14 +2,14 @@
 > it is intended to find out whether there is an available path for the signal to transfer between "Device From" and "Device To" with expected latency, if there is, the available path and corresponding latency will be output
 
 ## How to use the program:
-### Step 1:
+### Step 1 - initiate:
 open the CLI, move to the directory having "index.php" file (the directory is "npt" in this case) and ensure the .csv file is stored in the same directory
-### Step 2:
+### Step 2 - run the program:
 input the command as "php index.php csv-file-name.csv", (e.g php index.php data.csv)
 ```
 note: the program won't continue until the command is input as right format as above
 ```
-### Step 3:
+### Step 3 - find the path:
 after the CLI validation, you will be asked to "input", the format should be [Device From] [Device To] [Time] (e.g A F 1000 followed by ENTER key)
 ```
 note: 
@@ -27,3 +27,6 @@ Input: A D 100 Output: A => C => D => 50
 Input: E A 400 Output: E => D => B => A => 120
 
 Input: E A 80 Output: E => D => C => A => 60
+
+### Step 4 - exit the program:
+simply input the "QUIT" in the input interfacefollowed by ENTER key
