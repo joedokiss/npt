@@ -83,6 +83,17 @@ class ListController{
      */
     public function getMatched($input, $path)
     {
-        
+        $result = [];
+        foreach ($path as $k => $v) {
+
+            if (preg_match("/^$input[0][a-zA-Z]*$input[1]$/", $k)) {
+
+                if (empty($result))
+                    $result = array(implode('=>', str_split($k, 1)), $v);
+                else if ($result[0] > $v)
+                    $result = array(implode('=>', str_split($k, 1)), $v);
+            }
+        }
+        return $result;
     }
 }

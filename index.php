@@ -58,9 +58,8 @@ do{
 
         //find out paths
         $listController->findPaths(strtoupper($input[0]), $nodesList, [strtoupper($input[0]) => 0]);
-        //$paths = $_SESSION['list'];
-        $paths = $_GET;
-
+        $paths = $_SESSION['list'];
+        
         //find out the matched path (if there is) according to the input path and latency
         $inputParams = explode(' ', $input);
         $matched = $listController->getMatched($inputParams, $paths[0]);

@@ -49,7 +49,15 @@ class ListTest extends \PHPUnit_Framework_TestCase
 
     /** @test */
     public function D_to_A_can_be_matched(){
-        
+        $start = 'D';
+        $this->_listController->findPaths($start, $this->_nodesList, ['D' => 0]);
+        $paths = $_SESSION['list'];
+
+        //mock "D A 150"
+        $inputArray = ['D', 'A', 150];
+        $matched = $this->_listController->getMatched($inputArray, $paths[0]);
+
+        $this->assertEquals(!empty($matched), true);
     }
 }
 
