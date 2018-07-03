@@ -40,7 +40,7 @@ try{
 }
 
 //start the session
-session_start();
+//session_start();
 
 do{
     //fetch the input for the path with latency
@@ -58,13 +58,14 @@ do{
 
         //find out paths
         $listController->findPaths(strtoupper($input[0]), $nodesList, [strtoupper($input[0]) => 0]);
-        $paths = $_SESSION['list'];
+        //$paths = $_SESSION['list'];
+        $paths = $_GET;
 
         //find out the matched path (if there is) according to the input path and latency
         $inputParams = explode(' ', $input);
         $matched = $listController->getMatched($inputParams, $paths[0]);
 
-        if (!empty($matched) && $matched[1] < (int)$inputParams[2]){
+        if (!empty($matched) && $matched[1] <= (int)$inputParams[2]){
             fwrite(STDOUT, "Output: $matched[0]=>$matched[1] \n");
         }else{
             fwrite(STDOUT, "Output: Path not found \n");

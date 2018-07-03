@@ -27,8 +27,16 @@ class ListController{
     * read the CSV file and generate the nodes list
     */
     public function generateList(){
+        $csv = fopen($this->csvFile, "r");
         $data = [];
+        fgetcsv($csv);
+        while (!feof($csv)) {
+            $line = fgetcsv($csv);
 
+            $data[$line[0]][$line[1]] = (int)$line[2];
+            $data[$line[1]][$line[0]] = (int)$line[2];
+        }
+        fclose($csv);
         return $data;
     }
 
@@ -37,7 +45,37 @@ class ListController{
      */
     public function findPaths($node, $list, $next, $a = [])
     {
-        
+        if (count($next) == count($list)) {
+
+            return $_SESSION['list'] = [array_merge($next, $a)];
+            
+        }
+        foreach ($list[$node[strlen($node) - 1]] as $k => $v) {
+            foreach ($next as $n => $m) {
+                if ($k == $n[strlen($n) - 1]) {
+                    unset($list[$node][$k]);
+                }
+            }
+        }
+        foreach ($list[$node[strlen($node) - 1]] as $k => $v) {
+            $a[$node . $k] = $next[$node] + $v;
+        }
+        foreach ($a as $k => $v) {
+            foreach ($next as $n => $m) {
+                if ($k[strlen($k) - 1] == $n[strlen($n) - 1]) {
+                    unset($a[$k]);
+                }
+            }
+        }
+        foreach ($a as $k => $v) {
+            if (!isset($smallest) || $smallest > $v) {
+                $smallest = $v;
+                $node = $k;
+            }
+        }
+        $next[$node] = $smallest;
+        unset($smallest);
+        $this->findPaths($node, $list, $next, $a);
     }
 
     /**
@@ -45,8 +83,6 @@ class ListController{
      */
     public function getMatched($input, $path)
     {
-        $result = [];
         
-        return $result;
     }
 }
